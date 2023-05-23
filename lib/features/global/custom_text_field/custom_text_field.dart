@@ -1,9 +1,6 @@
 
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_chatgpt_clone/features/global/theme/style.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController textEditingController;
@@ -55,7 +52,7 @@ class CustomTextField extends StatelessWidget {
                               ? null
                               : onTap,
                           child: Icon(
-                            Feather.send,
+                            Icons.send,
                             color: textEditingController.text.isEmpty
                                 ? Colors.grey.withOpacity(.4)
                                 : Colors.grey,

@@ -1,5 +1,3 @@
-
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,7 +10,9 @@ import 'package:share_plus/share_plus.dart';
 
 class ChatMessageSingleItem extends StatelessWidget {
   final ChatMessageEntity chatMessage;
-  const ChatMessageSingleItem({Key? key,required this.chatMessage}) : super(key: key);
+
+  const ChatMessageSingleItem({Key? key, required this.chatMessage})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ChatMessageSingleItem extends StatelessWidget {
   Widget _chatMessageItem(BuildContext context) {
     if (chatMessage.messageId == ChatGptConst.AIBot) {
       return Container(
-        padding: EdgeInsets.symmetric(vertical: 25,horizontal: 150),
+        padding: EdgeInsets.symmetric(vertical: 25, horizontal: 150),
         decoration: BoxDecoration(
           color: colorGrayLight,
         ),
@@ -72,7 +72,10 @@ class ChatMessageSingleItem extends StatelessWidget {
                   InkWell(
                       onTap: () {
                         Clipboard.setData(
-                            ClipboardData(text: chatMessage.promptResponse));
+                          ClipboardData(
+                            text: chatMessage.promptResponse ?? "",
+                          ),
+                        );
                         //toast("Copied");
                       },
                       child: Icon(Icons.copy, size: 18)),
@@ -80,10 +83,11 @@ class ChatMessageSingleItem extends StatelessWidget {
                     width: 10,
                   ),
                   InkWell(
-                      onTap: () {
-                        Share.share(chatMessage.promptResponse!);
-                      },
-                      child: Icon(Icons.share, size: 18)),
+                    onTap: () {
+                      Share.share(chatMessage.promptResponse!);
+                    },
+                    child: Icon(Icons.share, size: 18),
+                  ),
                 ],
               ),
             ),
@@ -95,7 +99,7 @@ class ChatMessageSingleItem extends StatelessWidget {
       );
     } else {
       return Container(
-        padding: EdgeInsets.symmetric(vertical: 25,horizontal: 150),
+        padding: EdgeInsets.symmetric(vertical: 25, horizontal: 150),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -103,7 +107,8 @@ class ChatMessageSingleItem extends StatelessWidget {
               height: 35,
               width: 35,
               decoration: BoxDecoration(
-                  color: Colors.blueGrey, borderRadius: BorderRadius.circular(8)),
+                  color: Colors.blueGrey,
+                  borderRadius: BorderRadius.circular(8)),
               child: Center(
                 child: Text(
                   "U",
